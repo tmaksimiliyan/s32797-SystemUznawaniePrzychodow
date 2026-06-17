@@ -19,9 +19,18 @@ public class ContractsController(IContractService contractService) : ControllerB
             var result = await contractService.CreateContractAsync(request, ct);
             return Created($"api/contracts/{result.Id}", result);
         }
-        catch (NotFoundException e) { return NotFound(e.Message); }
-        catch (ConflictException e) { return Conflict(e.Message); }
-        catch (BadRequestException e) { return BadRequest(e.Message); }
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
+        catch (ConflictException e)
+        {
+            return Conflict(e.Message);
+        }
+        catch (BadRequestException e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpDelete("{id:int}")]
@@ -32,7 +41,13 @@ public class ContractsController(IContractService contractService) : ControllerB
             await contractService.DeleteContractAsync(id, ct);
             return NoContent();
         }
-        catch (NotFoundException e) { return NotFound(e.Message); }
-        catch (ConflictException e) { return Conflict(e.Message); }
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
+        catch (ConflictException e)
+        {
+            return Conflict(e.Message);
+        }
     }
 }

@@ -19,7 +19,10 @@ public class ClientsController(IClientService clientService) : ControllerBase
             var result = await clientService.AddIndividualClientAsync(request, ct);
             return Created($"api/clients/{result.Id}", result);
         }
-        catch (ConflictException e) { return Conflict(e.Message); }
+        catch (ConflictException e)
+        {
+            return Conflict(e.Message);
+        }
     }
 
     [HttpPost("company")]
@@ -30,7 +33,10 @@ public class ClientsController(IClientService clientService) : ControllerBase
             var result = await clientService.AddCompanyClientAsync(request, ct);
             return Created($"api/clients/{result.Id}", result);
         }
-        catch (ConflictException e) { return Conflict(e.Message); }
+        catch (ConflictException e)
+        {
+            return Conflict(e.Message);
+        }
     }
 
     [HttpPut("individual/{id:int}")]
@@ -42,7 +48,10 @@ public class ClientsController(IClientService clientService) : ControllerBase
             await clientService.UpdateIndividualClientAsync(id, request, ct);
             return NoContent();
         }
-        catch (NotFoundException e) { return NotFound(e.Message); }
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
     }
 
     [HttpPut("company/{id:int}")]
@@ -54,7 +63,10 @@ public class ClientsController(IClientService clientService) : ControllerBase
             await clientService.UpdateCompanyClientAsync(id, request, ct);
             return NoContent();
         }
-        catch (NotFoundException e) { return NotFound(e.Message); }
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
     }
 
     [HttpDelete("{id:int}")]
@@ -66,7 +78,13 @@ public class ClientsController(IClientService clientService) : ControllerBase
             await clientService.DeleteClientAsync(id, ct);
             return NoContent();
         }
-        catch (NotFoundException e) { return NotFound(e.Message); }
-        catch (ConflictException e) { return Conflict(e.Message); }
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
+        catch (ConflictException e)
+        {
+            return Conflict(e.Message);
+        }
     }
 }

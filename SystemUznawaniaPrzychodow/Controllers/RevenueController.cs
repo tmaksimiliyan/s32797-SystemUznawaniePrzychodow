@@ -18,7 +18,10 @@ public class RevenueController(IRevenueService revenueService) : ControllerBase
             var result = await revenueService.GetCurrentRevenueAsync(softwareId, currency, ct);
             return Ok(result);
         }
-        catch (BadRequestException e) { return BadRequest(e.Message); }
+        catch (BadRequestException e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpGet("predicted")]
@@ -29,6 +32,9 @@ public class RevenueController(IRevenueService revenueService) : ControllerBase
             var result = await revenueService.GetPredictedRevenueAsync(softwareId, currency, ct);
             return Ok(result);
         }
-        catch (BadRequestException e) { return BadRequest(e.Message); }
+        catch (BadRequestException e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 }

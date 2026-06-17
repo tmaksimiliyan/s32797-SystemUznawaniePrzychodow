@@ -19,9 +19,20 @@ public class SubscriptionsController(ISubscriptionService subscriptionService) :
             var result = await subscriptionService.CreateSubscriptionAsync(request, ct);
             return Created($"api/subscriptions/{result.Id}", result);
         }
-        catch (NotFoundException e) { return NotFound(e.Message); }
-        catch (ConflictException e) { return Conflict(e.Message); }
-        catch (BadRequestException e) { return BadRequest(e.Message); }
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
+        
+        catch (ConflictException e)
+        {
+            return Conflict(e.Message);
+        }
+        
+        catch (BadRequestException e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpPost("renew")]
@@ -32,8 +43,19 @@ public class SubscriptionsController(ISubscriptionService subscriptionService) :
             var result = await subscriptionService.RenewAsync(request, ct);
             return Ok(result);
         }
-        catch (NotFoundException e) { return NotFound(e.Message); }
-        catch (ConflictException e) { return Conflict(e.Message); }
-        catch (BadRequestException e) { return BadRequest(e.Message); }
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
+
+        catch (ConflictException e)
+        {
+            return Conflict(e.Message);
+        }
+        
+        catch (BadRequestException e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 }

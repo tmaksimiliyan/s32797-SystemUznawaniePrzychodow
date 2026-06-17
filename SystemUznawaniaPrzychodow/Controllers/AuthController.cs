@@ -33,7 +33,10 @@ public class AuthController(
         await db.SaveChangesAsync(ct);
 
         AppendRefreshTokenCookie(refreshToken);
-        return Ok(new { accessToken });
+        return Ok(new
+        {
+            accessToken
+        });
     }
 
     [HttpPost("sign-up")]
@@ -68,7 +71,10 @@ public class AuthController(
         await db.SaveChangesAsync(ct);
 
         AppendRefreshTokenCookie(refreshToken);
-        return Ok(new { accessToken });
+        return Ok(new
+        {
+            accessToken
+        });
     }
 
     [HttpPost("refresh")]
@@ -97,7 +103,10 @@ public class AuthController(
         await db.SaveChangesAsync(ct);
 
         AppendRefreshTokenCookie(newRefreshToken);
-        return Ok(new { accessToken });
+        return Ok(new
+        {
+            accessToken
+        });
     }
 
     [HttpPost("sign-out")]
@@ -117,7 +126,10 @@ public class AuthController(
             }
         }
 
-        Response.Cookies.Delete("refreshToken", new CookieOptions { HttpOnly = true, Secure = true, SameSite = SameSiteMode.Strict });
+        Response.Cookies.Delete("refreshToken", new CookieOptions
+        {
+            HttpOnly = true, Secure = true, SameSite = SameSiteMode.Strict
+        });
         return Ok();
     }
 
